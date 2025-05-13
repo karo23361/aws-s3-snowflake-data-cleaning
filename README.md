@@ -6,4 +6,4 @@ This project involves setting up an AWS S3 bucket and creating the necessary rol
 ## Technologies ##
 - 📦 AWS S3
 - ❄️ Snowflake
-- 📊 PowerBI (in the future)
+- 📊 Tableau
