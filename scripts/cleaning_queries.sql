@@ -41,6 +41,33 @@ WITH state_cte AS (SELECT
 FROM club_members)
 SELECT TRIM(LEFT(city_state, POSITION(',' IN city_state) - 1)) as city FROM state_cte;
 
+--Cleaning State
+CREATE OR REPLACE TABLE state_mapping (
+    raw_state STRING,
+    cleaned_state STRING
+);
+
+
+INSERT INTO state_mapping VALUES
+    ('Kalifornia', 'California'),
+    ('Kansus', 'Kansas'),
+    ('Districts of Columbia', 'District of Columbia'),
+    ('NewYork', 'New York'),
+    ('NorthCarolina', 'North Carolina'),
+    ('South Dakotaaaa', 'South Dakota'),
+    ('South Dakota', 'South Dakota'), 
+    ('Tej‡823as', 'Texas'),
+    ('Tejas', 'Texas'),
+    ('Tennesee', 'Tennessee'),
+    ('Tennesseeee', 'Tennessee');
+
+
+
+UPDATE club_members_cleaned AS cm
+SET state = sm.cleaned_state
+FROM state_mapping AS sm
+WHERE cm.state = sm.raw_state;
+
 --Cleaning Full_name
 
 SELECT CASE 
