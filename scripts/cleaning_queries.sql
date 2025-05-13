@@ -65,7 +65,8 @@ FROM club_members;
 
 --Cleaning Membership Date
 
-SELECT 
-TO_DATE(membership_date, 'MM/DD/YYYY') as membership_date
-FROM club_members;
-
+SELECT CASE 
+    WHEN TO_DATE(membership_date, 'MM/DD/YYYY') < '2012-01-01' THEN NULL
+    ELSE TO_DATE(membership_date, 'MM/DD/YYYY')
+    END as membership_date
+FROM club_members ORDER BY membership_date ASC;
